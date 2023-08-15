@@ -1,11 +1,11 @@
-package com.voyagers.core
+package com.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class CoreApplication
+class ApiApplication
 
 fun main(args: Array<String>) {
-    runApplication<CoreApplication>(*args)
+    runApplication<ApiApplication>(*args)
 }

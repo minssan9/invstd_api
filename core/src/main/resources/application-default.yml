@@ -1,0 +1,72 @@
+spring:
+  data:
+    web:
+      pageable:
+        size-parameter: size
+        page-parameter: page
+        default-page-size: 20
+        one-indexed-parameters: false
+        max-page-size: 2000
+  decorator:
+    datasource:
+      p6spy:
+        logging: slf4j
+        enable-logging: on
+  jpa: #JPA 설정
+    open-in-view: true
+    show-sql: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 30
+#        dialect: org.hibernate.dialect.VoyagerssDBDialect  #방언 설정 https://dololak.tistory.com/465, https://gigas-blog.tistory.com/119
+        show_sql: true #하이버네이트가 실행하는 모든 SQL문을 콘솔로 출력해 준다.
+        format_sql: true        #콘솔에 출력되는 JPA 실행 쿼리를 가독성있게 표현한다.
+        use_sql_comments: true        #디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력해 준다.
+        jdbc:
+          batch_size: 100
+#          time_zone: Asia/Seoul
+  output:
+    ansi:
+      enabled: always
+  aop:
+    auto: true
+    proxy-target-class: true
+
+
+
+mail:
+  host: smtp.gmail.com
+  port: 587
+  protocol: smtp
+  default-encoding: UTF-8
+  smtp:
+    start-tls-enable: true
+    auth: true
+
+
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+
+
+##################################################################################################################
+# LOG4JDBC 관련
+##################################################################################################################
+logging:
+  level:
+    org:
+      springframework:
+        security: info
+  pattern:
+    file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d %-5level %logger : %msg%n"
+  logback:
+    rollingpolicy:
+      clean-history-on-start: false
+      max-file-size: 500MB
+      max-history: 10
+
+
+file:
+  upload-dir: /ftp
+

@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: investand_api
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+#      ddl-auto: update
+    generate-ddl: true
+    show-sql: false
+
+core:
+  web-address: https://investand.net
+
+db-investand:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: ${db.release.url}
+  username: ${db.release.username}
+  password: ${db.release.password}
+
+#error / warn / debug / info / trace
+logging:
+  level:
+    org.hibernate: error
+    sql: error
+    p6psy.p6spy: error
+    root: warn
+  file:
+    path: /var/log/${spring.application.name}-release
+    name: ${logging.file.path}/${spring.application.name}.log

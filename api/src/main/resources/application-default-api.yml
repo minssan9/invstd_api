@@ -1,0 +1,11 @@
+server:
+  forward-headers-strategy: native
+  servlet:
+    context-path: /api
+
+
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true

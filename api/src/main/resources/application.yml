@@ -1,0 +1,27 @@
+--- #local 환경
+spring:
+  profiles:
+    group:
+      "local" : "default, default-api, security, security-default, local-core, local-api, secret"
+
+--- #dev 환경
+spring:
+  profiles:
+    group:
+      "develop" : "default, default-api, security, security-default, develop-core, develop-api, secret"
+
+--- #stage 환경
+spring:
+  profiles:
+    group:
+      "stage" : "default, default-api, security, security-default, stage-core, stage-api, secret"
+
+--- #api 환경
+
+spring:
+  profiles:
+    group:
+      "release" : "default, default-api, security, security-release, release-core, release-api, secret"
+
+
+

@@ -1,0 +1,32 @@
+# Security OAuth
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - email
+              - profile
+          kakao:
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - plusfriends
+              - profile
+              - account_email
+              - phone_number
+            clientName: Kakao
+          naver:
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - name
+              - nickname
+              - email
+              - mobile
+              - profile_image
+            clientName: Naver
