@@ -1,0 +1,3 @@
+rootProject.name = 'investand_api'
+include 'core'
+include 'api'
