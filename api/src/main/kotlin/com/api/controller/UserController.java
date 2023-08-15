@@ -1,8 +1,8 @@
 package com.api.controller;
 
-import com.knf.dev.demo.crudapplication.exception.ResourceNotFoundException;
-import com.knf.dev.demo.crudapplication.model.User;
-import com.knf.dev.demo.crudapplication.repository.UserRepository;
+import com.api.exception.ResourceNotFoundException;
+import com.core.model.User;
+import com.core.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

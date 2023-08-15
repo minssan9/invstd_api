@@ -1,4 +1,4 @@
-package com.api.model;
+package com.core.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

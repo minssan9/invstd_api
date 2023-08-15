@@ -1,6 +1,6 @@
-package com.api.repository;
+package com.core.repository;
 
-import com.knf.dev.demo.crudapplication.model.User;
+import com.core.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

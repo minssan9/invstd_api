@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 @Data
 @Component
 class InvestandProperties {
-    var ur1l: String = ""
+    var url: String = ""
     var username: String = ""
     var password: String = ""
     var driverClassName: String = ""
