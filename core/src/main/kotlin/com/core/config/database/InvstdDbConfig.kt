@@ -20,44 +20,44 @@ import javax.sql.DataSource
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-    entityManagerFactoryRef = "deviceEntityManagerFactory",
+    entityManagerFactoryRef = "investandEntityManagerFactory",
     basePackages = ["com.core.repository"]
 )
 internal class InvstdDbConfig {
 
     @Primary
-    @Bean(name = ["deviceDataSourceProperties"])
+    @Bean(name = ["investandDataSourceProperties"])
     @ConfigurationProperties("db-investand")
-    fun deviceDataSourceProperties(): DataSourceProperties {
+    fun investandDataSourceProperties(): DataSourceProperties {
         return DataSourceProperties()
     }
 
 
     @Primary
-    @Bean(name = ["deviceDataSource"])
-    @ConfigurationProperties("device-data.datasource.configuration")
-    fun dataSource(@Qualifier("deviceDataSourceProperties") deviceDataSourceProperties: DataSourceProperties): DataSource {
-        return deviceDataSourceProperties.initializeDataSourceBuilder().type(HikariDataSource::class.java).build()
+    @Bean(name = ["investandDataSource"])
+    @ConfigurationProperties("db-investand.configuration")
+    fun dataSource(@Qualifier("investandDataSourceProperties") investandDataSourceProperties: DataSourceProperties): DataSource {
+        return investandDataSourceProperties.initializeDataSourceBuilder().type(HikariDataSource::class.java).build()
     }
 
     @Primary
-    @Bean(name = ["deviceEntityManagerFactory"])
+    @Bean(name = ["investandEntityManagerFactory"])
     fun entityManagerFactory(
         builder: EntityManagerFactoryBuilder,
-        @Qualifier("deviceDataSource") deviceDataSource: DataSource
+        @Qualifier("investandDataSource") investandDataSource: DataSource
     ): LocalContainerEntityManagerFactoryBean {
         return builder
-            .dataSource(deviceDataSource)
-            .packages("wool.multidb.device.domain")
-            .persistenceUnit("device")
+            .dataSource(investandDataSource)
+            .packages("com.core.entity")
+            .persistenceUnit("investand")
             .build()
     }
 
     @Primary
-    @Bean(name = ["deviceTransactionManager"])
+    @Bean(name = ["investandTransactionManager"])
     fun transactionManager(
-        @Qualifier("deviceEntityManagerFactory") deviceEntityManagerFactory: EntityManagerFactory
+        @Qualifier("investandEntityManagerFactory") investandEntityManagerFactory: EntityManagerFactory
     ): PlatformTransactionManager {
-        return JpaTransactionManager(deviceEntityManagerFactory)
+        return JpaTransactionManager(investandEntityManagerFactory)
     }
 }
