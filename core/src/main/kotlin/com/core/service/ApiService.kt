@@ -1,6 +1,8 @@
+import lombok.RequiredArgsConstructor
 import retrofit2.http.GET
 
 interface ApiService {
+
     @GET("m2_currency_volume")
     suspend fun getM2CurrencyVolume(): CurrencyData
 

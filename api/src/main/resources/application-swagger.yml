@@ -1,0 +1,52 @@
+springdoc:
+  version: '1.0.0'
+  api-docs:
+    groups:
+      enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha/
+    tags-sorter: alpha
+    doc-expansion: none
+    display-request-duration: true
+    disable-swagger-default-url: true
+    display-query-params-without-oauth2: true
+  show-actuator: true
+  paths-to-match: /**
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+
+---
+spring.config.activate.on-profile: local
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+    groups:
+      enabled: true
+
+---
+spring.config.activate.on-profile: develop
+
+
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+    groups:
+      enabled: true
+
+---
+spring.config.activate.on-profile: release
+
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    groups:
+      enabled: false

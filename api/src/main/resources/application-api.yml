@@ -1,0 +1,96 @@
+## Spring boot actuator
+spring:
+  application.name: en9door-api-service
+  main:
+    allow-bean-definition-overriding: true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+  messages:
+    basename: message/messages
+    cache-duration: 10
+    fallback-to-system-locale: false
+    use-code-as-default-message: true
+    encoding: UTF-8
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+server:
+  forward-headers-strategy: native
+  servlet:
+    context-path: /api
+  tomcat:
+    max-http-form-post-size: 5MB
+
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    registryFetchIntervalSeconds: 5
+
+jwt_secret: en9doorJwtTokenSecretKeyUsedInJWTProvider
+
+
+---
+spring.config.activate.on-profile: local
+server:
+  port: 24000
+
+app:
+  web-address: http://dev.investand.net:9090
+  cors:
+    allowed-origins: 'http://localhost:8080,http://dev.investand.net,http://dev.investand.net:9090'
+
+baseUrl: https://dev.investand.net:24000
+
+eureka:
+  client:
+    enabled: true     # enabled = false
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+---
+spring.config.activate.on-profile: develop
+server:
+  port: 24001
+
+baseUrl: https://dev.investand.net:24001
+
+
+eureka:
+  client:
+    enabled: true     # enabled = false
+    service-url:
+      defaultZone: http://dev.en9doors.com:8761/eureka
+
+
+---
+spring.config.activate.on-profile: release
+server:
+  port: 24001
+
+app:
+  web-address: https://investand.net
+
+baseUrl: https://investand.net/api
+
+
+eureka:
+  client:
+    enabled: false
+    service-url:
+      defaultZone: http://dev.en9doors.com:8761/eureka

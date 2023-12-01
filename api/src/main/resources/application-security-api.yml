@@ -1,0 +1,97 @@
+# Security OAuth
+spring:
+  # Security OAuth
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${oauth2_google_clientId}
+            clientSecret: ${oauth2_google_clientSecret}
+            redirectUri: "${baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - email
+              - profile
+          kakao:
+            clientId: ${oauth2_kakao_clientId}
+            clientSecret: ${oauth2_kakao_clientSecret}
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            redirectUri: "${baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - plusfriends
+              - profile
+              - account_email
+              - phone_number
+            clientName: Kakao
+          naver:
+            clientId: ${oauth2_naver_clientId}
+            clientSecret: ${oauth2_naver_clientSecret}
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            redirectUri: "${baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - name
+              - nickname
+              - email
+              - mobile
+              - profile_image
+            clientName: Naver
+        # Provider 설정
+        provider:
+          kakao:
+            authorizationUri: https://kauth.kakao.com/oauth/authorize
+            tokenUri: https://kauth.kakao.com/oauth/token
+            userInfoUri: https://kapi.kakao.com/v2/user/me
+            userNameAttribute: id
+          naver:
+            authorizationUri: https://nid.naver.com/oauth2.0/authorize
+            tokenUri: https://nid.naver.com/oauth2.0/token
+            userInfoUri: https://openapi.naver.com/v1/nid/me
+            userNameAttribute: response
+
+# 토큰 관련 secret Key 및 RedirectUri 설정
+app:
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:9090/oauth/redirect
+      - http://dev.en9doors.com/oauth/redirect
+      - https://en9doors.com/oauth/redirect
+      - http://dev.en9doors.com:9090/oauth/redirect
+  oauth:
+    kakao:
+      authorizationUri: https://kauth.kakao.com/oauth/authorize
+      tokenUri: https://kauth.kakao.com/oauth/token
+      userInfoUri: https://kapi.kakao.com/v2/user/me
+      userNameAttribute: id
+    naver:
+      authorizationUri: https://nid.naver.com/oauth2.0/authorize
+      tokenUri: https://nid.naver.com/oauth2.0/token
+      userInfoUri: https://openapi.naver.com/v1/nid/me
+      userNameAttribute: response
+
+  # cors 설정
+  cors:
+    allowed-origins: 'https://en9doors.com,http://dev.en9doors.com,http://dev.en9doors.com:9090,http://localhost:9090'
+    allowed-methods: GET,POST,PUT,OPTIONS,DELETE
+    allowed-headers: '*'
+    max-age: 3600
+  auth:
+    tokenExpiry: 600  # minutes
+    refreshTokenExpiry: 1380  # minutes
+
+---
+spring.config.activate.on-profile: release
+
+#Security OAuth
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            redirectUri: "https://en9doors.com/api/{action}/oauth2/code/{registrationId}"
+          kakao:
+            redirectUri: "https://en9doors.com/api/{action}/oauth2/code/{registrationId}"
+          naver:
+            redirectUri: "https://en9doors.com/api/{action}/oauth2/code/{registrationId}"

@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RestController
 class ApiController(private val apiService: ApiService) {
 
     @GetMapping("/m2-currency-volume")
-    suspend fun getM2CurrencyVolume(): Double {
+    suspend fun getM2CurrencyVolume(): CurrencyData {
         return apiService.getM2CurrencyVolume()
     }
 
     @GetMapping("/stock-index")
-    suspend fun getStockIndex(): Double {
+    suspend fun getStockIndex(): CurrencyData {
         return apiService.getStockIndex()
     }
 }

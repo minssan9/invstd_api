@@ -1,0 +1,69 @@
+##################################################################################################################
+# LOG4JDBC 관련
+##################################################################################################################
+logging:
+  level:
+    org:
+      springframework:
+        security: info
+  pattern:
+    file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d %-5level %logger : %msg%n"
+  logback:
+    rollingpolicy:
+      clean-history-on-start: false
+      max-file-size: 500MB
+      max-history: 10
+#  config: classpath:config/logback-template.xml
+
+
+
+---
+spring.config.activate.on-profile: local
+
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: false
+
+#error / warn / debug / info / trace
+logging:
+  level:
+#    hibernate.SQL: info
+#    sql: info
+    p6psy: off
+    root: info
+    org.hibernate.SQL: warn
+    sql: warn
+#    org.hibernate.type.descriptor.sql.BasicBinder: error
+#    org.hibernate: error
+#    sql: error
+#    p6psy.p6spy: error
+#    root: warn
+
+
+---
+spring.config.activate.on-profile: develop
+
+#error / warn / debug / info / trace
+logging:
+  level:
+    sql: warn
+    p6psy: warn
+    root: debug
+
+
+
+---
+spring.config.activate.on-profile: release
+
+#error / warn / debug / info / trace
+logging:
+  level:
+    org.hibernate.SQL: error
+    sql: error
+    p6psy.p6spy: error
+    root: info
+
+
