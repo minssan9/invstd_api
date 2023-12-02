@@ -1,0 +1,39 @@
+from urllib.request import urlopen
+from io import BytesIO
+from zipfile import ZipFile
+import xml.etree.ElementTree as ET
+import pandas as pd
+
+crtfc_key = '1163b3817fe2c7d71e6865119b8010dc345880aa' # ' '안에 자신의 API키를 넣어야 됨.
+
+# url은 개발 가이드에서 처럼 기본 url + 인증키
+url = 'https://opendart.fss.or.kr/api/corpCode.xml?crtfc_key=%s'%(crtfc_key)
+
+with urlopen(url) as zipresp:
+    with ZipFile(BytesIO(zipresp.read())) as zfile:
+        zfile.extractall('corpcode') # zip 파일 압축 해제 폴더
+        
+tree = ET.parse('corpcode/CORPCODE.xml') # xml 파일 경로
+root = tree.getroot()
+
+df_corp = pd.DataFrame(columns=['종목명','고유번호','종목코드'])
+for company in root.iter('list'):
+    stock_code = company.findtext('stock_code')
+    stock_code = stock_code.strip()
+
+    if stock_code:
+        data = {
+            '종목명': company.findtext('corp_name'),
+            '고유번호': company.findtext('corp_code'),
+            '종목코드': company.findtext('stock_code')
+        }
+
+        df_corp = df_corp.append(data, ignore_index=True)
+        
+df_corp = df_corp.sort_values(by='종목명').reset_index(drop=True)
+
+# 동일폴더내 db 파일명(파일이 없으면 새로 생성됨)
+con = sqlite3.connect("DBNAME.db") 
+# LIST라는 이름의 테이블에 고유번호 데이터프레임 추가
+df_corp.to_sql('LIST', con, if_exists='append', index=False)
+con.close()
