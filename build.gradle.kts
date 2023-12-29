@@ -4,8 +4,8 @@ plugins {
     kotlin("jvm") version "1.6.10"
     kotlin("kapt") version "1.7.20"
     kotlin("plugin.spring") apply false
-    kotlin("plugin.jpa") apply false
-    id("org.springframework.boot") apply false
+    kotlin("plugin.jpa")
+    id("org.springframework.boot")
     id("io.spring.dependency-management")
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
 }
@@ -42,6 +42,8 @@ subprojects {
     }
 
     dependencies {
+        implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -51,13 +53,10 @@ subprojects {
         testImplementation("io.kotest:kotest-assertions-core:5.4.2")
         testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.2")
 
-        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-        kapt("org.springframework.boot:spring-boot-configuration-processor")
+        annotationProcessor("jakarta.persistence:jakarta.persistence-api")
+        annotationProcessor("jakarta.annotation:jakarta.annotation-api")
 
         implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-        implementation("io.springfox:springfox-swagger-ui:3.0.0")
-        implementation("io.springfox:springfox-boot-starter:3.0.0")
-
         // Retrofit
         implementation("com.squareup.retrofit2:retrofit:2.9.0")
         implementation("com.squareup.retrofit2:converter-gson:2.9.0")

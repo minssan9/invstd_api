@@ -3,8 +3,6 @@ package com.api.exceptionhandler
 import com.core.component.exception.CommonException
 import com.core.component.exception.CommonExceptionType
 import com.core.config.logger
-import io.jsonwebtoken.ExpiredJwtException
-import lombok.extern.slf4j.Slf4j
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.HttpRequestMethodNotSupportedException
@@ -36,14 +34,14 @@ class ExceptionHandlerAdvice {
         )
     }
 
-    @ExceptionHandler(ExpiredJwtException::class)
-    fun handleExpiredJwtException(e: ExpiredJwtException): ResponseEntity<ExceptionResponse> {
-        log.error(e.message, e)
-        return ResponseEntity<ExceptionResponse>(
-            ExceptionResponse(CommonExceptionType.INTERNAL_SERVER_ERROR, e),
-            HttpStatus.UNAUTHORIZED
-        )
-    }
+//    @ExceptionHandler(ExpiredJwtException::class)
+//    fun handleExpiredJwtException(e: ExpiredJwtException): ResponseEntity<ExceptionResponse> {
+//        log.error(e.message, e)
+//        return ResponseEntity<ExceptionResponse>(
+//            ExceptionResponse(CommonExceptionType.INTERNAL_SERVER_ERROR, e),
+//            HttpStatus.UNAUTHORIZED
+//        )
+//    }
 
 //    @ExceptionHandler(InvalidDataAccessResourceUsageException::class)
 //    fun handleRuntimeException(e: InvalidDataAccessResourceUsageException): ResponseEntity<ExceptionResponse> {

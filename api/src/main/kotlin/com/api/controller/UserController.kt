@@ -19,7 +19,7 @@ class UserController(
 
     @GetMapping("/users")
     fun allUsers(): List<User> {
-        return userRepository.findAll()
+        return userRepository.findAll().toList()
     }
 
 
