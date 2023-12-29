@@ -23,7 +23,7 @@ file:
 ---
 spring.config.activate.on-profile: local
 core:
-  web-address: http://dev.en9doors.com:9090
+  web-address: http://dev.investand.com:9090
 
 spring:
   devtools:
@@ -34,11 +34,11 @@ spring:
 ---
 spring.config.activate.on-profile: develop
 core:
-  web-address: http://dev.en9doors.com
+  web-address: http://dev.investand.com
 
 
 
 ---
 spring.config.activate.on-profile: release
 core:
-  web-address: https://en9doors.com
+  web-address: https://investand.com

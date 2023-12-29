@@ -1,0 +1,21 @@
+--- #dev 환경
+spring:
+  profiles:
+    group:
+      "local" : "default, logging, mongo, database, database-default, secret"
+
+--- #dev 환경
+spring:
+  profiles:
+    group:
+      "develop" : "default, logging, mongo, database, database-default, secret"
+
+--- #api 환경
+
+spring:
+  profiles:
+    group:
+      "release" : "default, logging, mongo, database, database-default, secret"
+
+
+

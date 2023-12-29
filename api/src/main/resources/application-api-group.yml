@@ -1,0 +1,21 @@
+--- #local 환경
+spring:
+  profiles:
+    group:
+      "local" : "api, default-api, security, security-api, swagger"
+
+--- #dev 환경
+spring:
+  profiles:
+    group:
+      "develop" : "core, api, default-api, security, security-api"
+
+--- #api 환경
+
+spring:
+  profiles:
+    group:
+      "release" : "core, api, default-api, security, security-api"
+
+
+

@@ -2,20 +2,20 @@
 spring:
   profiles:
     group:
-      "local" : "default, api, security-api, database, logging, aws, secret"
+      "local" : "core, api, default-api, security, security-api, database, database-default, logging, mongo, api-group, aws, secret"
 
 --- #dev 환경
 spring:
   profiles:
     group:
-      "develop" : "default, api, security-api, database, logging, aws, secret"
+      "develop" : "core, api, default-api, security, security-api, aws, secret"
 
 --- #api 환경
 
 spring:
   profiles:
     group:
-      "release" : "default, api, security-api, database, logging, aws"
+      "release" : "core, api, default-api, security, security-api, aws"
 
 
 

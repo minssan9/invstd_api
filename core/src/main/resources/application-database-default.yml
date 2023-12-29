@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 20
+      max-lifetime: 160000
+      connection-timeout: 10000
+      validation-timeout: 10000
+      connection-init-sql: set wait_timeout = 180
+  data:
+    web:
+      pageable:
+        size-parameter: size
+        page-parameter: page
+        default-page-size: 20
+        one-indexed-parameters: false
+        max-page-size: 1000
+  jpa: #JPA 설정
+    generate-ddl: true
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 30
+        show_sql: false
+        #        dialect: org.hibernate.dialect.VoyagerssDBDialect  #방언 설정 https://dololak.tistory.com/465, https://gigas-blog.tistory.com/119
+        format_sql: true        #콘솔에 출력되는 JPA 실행 쿼리를 가독성있게 표현한다.
+        use_sql_comments: true        #디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력해 준다.
+        jdbc:
+          batch_size: 100
+          time_zone: Asia/Seoul
+  output:
+    ansi:
+      enabled: always
+
+decorator:
+  datasource:
+    p6spy:
+      logging: slf4j
+      enable-logging: false

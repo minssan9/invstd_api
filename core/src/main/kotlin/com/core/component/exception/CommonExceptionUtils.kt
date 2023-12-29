@@ -1,7 +1,5 @@
 package com.core.component.exception
 
-import net.sf.json.JSONObject
-import net.sf.json.JSONSerializer
 import java.text.MessageFormat
 
 class CommonExceptionUtils {
@@ -28,8 +26,8 @@ class CommonExceptionUtils {
         sb.append("]}")
 
         //StringBuffer -> JSON 변경
-        val jsonObject: JSONObject = JSONObject.fromObject(JSONSerializer.toJSON(sb.toString()))
-        return jsonObject.toString()
+//        val jsonObject: JSONObject = JSONObject.fromObject(JSONSerializer.toJSON(sb.toString()))
+        return sb.toString()
     }
 
     fun buildMessage(msgKey: String?, msgParams: Array<Any?>?): String? {

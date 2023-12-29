@@ -55,9 +55,9 @@ app:
   oauth2:
     authorizedRedirectUris:
       - http://localhost:9090/oauth/redirect
-      - http://dev.en9doors.com/oauth/redirect
-      - https://en9doors.com/oauth/redirect
-      - http://dev.en9doors.com:9090/oauth/redirect
+      - http://dev.investand.com/oauth/redirect
+      - https://investand.com/oauth/redirect
+      - http://dev.investand.com:9090/oauth/redirect
   oauth:
     kakao:
       authorizationUri: https://kauth.kakao.com/oauth/authorize
@@ -72,7 +72,7 @@ app:
 
   # cors 설정
   cors:
-    allowed-origins: 'https://en9doors.com,http://dev.en9doors.com,http://dev.en9doors.com:9090,http://localhost:9090'
+    allowed-origins: 'https://investand.com,http://dev.investand.com,http://dev.investand.com:9090,http://localhost:9090'
     allowed-methods: GET,POST,PUT,OPTIONS,DELETE
     allowed-headers: '*'
     max-age: 3600
@@ -90,8 +90,8 @@ spring:
       client:
         registration:
           google:
-            redirectUri: "https://en9doors.com/api/{action}/oauth2/code/{registrationId}"
+            redirectUri: "https://investand.com/api/{action}/oauth2/code/{registrationId}"
           kakao:
-            redirectUri: "https://en9doors.com/api/{action}/oauth2/code/{registrationId}"
+            redirectUri: "https://investand.com/api/{action}/oauth2/code/{registrationId}"
           naver:
-            redirectUri: "https://en9doors.com/api/{action}/oauth2/code/{registrationId}"
+            redirectUri: "https://investand.com/api/{action}/oauth2/code/{registrationId}"

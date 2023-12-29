@@ -1,0 +1,42 @@
+spring:
+  jpa:
+
+---
+spring.config.activate.on-profile: local
+
+spring:
+  data:
+    mongodb:
+      host: voyagers.2ekpunp.mongodb.net
+      port: 27017
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+      database: ${mongodb.database}
+#      authentication: database=admin
+
+
+
+---
+spring.config.activate.on-profile: develop
+
+spring:
+  data:
+    mongodb:
+      host: voyagers.2ekpunp.mongodb.net
+      port: 27017
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+      database: ${mongodb.database}
+#      authentication: database=admin
+---
+spring.config.activate.on-profile: release
+
+spring:
+  data:
+    mongodb:
+      host: voyagers.2ekpunp.mongodb.net
+      port: 27017
+      username: ${mongodb.username}
+      password: ${mongodb.password}
+      database: ${mongodb.database}
+#      authentication: database=admin

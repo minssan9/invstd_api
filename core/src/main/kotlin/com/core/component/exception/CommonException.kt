@@ -10,8 +10,7 @@ import java.util.*
 @Getter
 class CommonException : RuntimeException {
 
-    var gson: Gson? = null
-    private var type: CommonExceptionType? = null
+    var type: CommonExceptionType? = null
     val commonExceptionUtils = CommonExceptionUtils()
 
     constructor(type: CommonExceptionType) : super(type.message) {
